@@ -21,6 +21,7 @@
     2 months ago
   </dd>
 
+<% if @user_id == @photo.poster.id %>
   <dt>Edit photo</dt>
   <dd>
     <form action="/update_photo/<%= @photo.id %>">
@@ -33,6 +34,7 @@
       <button>Update photo</button>
     </form>
   </dd>
+  <% end %>
 
   <dt>Delete photo</dt>
   <dd>
@@ -69,13 +71,13 @@
   <% end %>
 </table>
 
-<h3>Add a new comment</h3>
+  <h3>Add a new comment</h3>
+    <form action="/insert_comment_record">
+      <input id="browser_photo_id" type="hidden" value="<%= @photo.id %>" name="input_photo_id">
 
-<form action="/insert_comment_record">
-  <input id="browser_photo_id" type="hidden" value="<%= @photo.id %>" name="input_photo_id">
+     <label for="browser_comment">Comment</label>
+      <textarea id="browser_comment" name="input_body" placeholder="Enter a comment..."></textarea>
 
-  <label for="browser_comment">Comment</label>
-  <textarea id="browser_comment" name="input_body" placeholder="Enter a comment..."></textarea>
+      <button>Add comment</button>
 
-  <button>Add comment</button>
 </form>
